@@ -35,9 +35,12 @@ public class WebPage {
 	private int emailParseStatus;
 	private Document document;
 
-	public WebPage(Anchor anchor) {
+	public WebPage(Anchor anchor) throws Exception {
 		super();
 		this.anchor = anchor;
+		this.webPageHash = Hasher.toSha256(anchor.getAnchorUrl()+CommonBal.getTimeStamp().toString());
+		this.anchorParseStatus = 0;
+		this.emailParseStatus = 0;
 	}
 
 	public void loadDocumentFromWeb() {

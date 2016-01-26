@@ -24,11 +24,16 @@ public class Anchor {
 		this.created = created;
 	}
 
-	public Anchor(Domain domain, String anchorHash, String anchorUrl) {
+	public Anchor(Domain domain, String anchorUrl) throws Exception {
 		super();
 		this.domain = domain;
-		this.anchorHash = anchorHash;
+		this.anchorHash = Hasher.toSha256(anchorUrl);
 		this.anchorUrl = anchorUrl;
+		this.created = CommonBal.getTimeStamp();
+		this.modified = CommonBal.getTimeStamp();
+		this.scanStatus = 0;
+		this.activated = true;
+		
 	}
 
 	public Domain getDomain() {

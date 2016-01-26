@@ -24,6 +24,15 @@ public class Domain {
 		this.domainHash = domainHash;
 		this.domainUrl = domainUrl;
 	}
+	
+	public Domain(String domainUrl) throws Exception {
+		super();
+		this.domainHash = Hasher.toSha256(domainUrl);
+		this.domainUrl = domainUrl;
+		this.enabled = true;
+		this.created = CommonBal.getTimeStamp();
+		this.modified = CommonBal.getTimeStamp();
+	}
 
 	public String getDomainHash() {
 		return domainHash;
